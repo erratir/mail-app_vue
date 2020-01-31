@@ -34,7 +34,7 @@ export default {
   components: { MessageView, MessageList },
   data () {
     return {
-      splitterModel: 50 // start at 50%
+      splitterModel: 35 // start at 50%
     }
   }
 }
