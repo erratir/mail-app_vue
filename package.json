@@ -8,6 +8,8 @@
   "author": "Aleksei Kobzev (kavpost@gmail.com)",
   "private": true,
   "scripts": {
+    "dev": "quasar dev",
+    "build": "quasar build",
     "lint": "eslint --ext .js,.vue src",
     "test": "echo \"No test specified\" && exit 0"
   },
