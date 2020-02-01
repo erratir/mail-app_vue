@@ -5,7 +5,7 @@
       clickable
       v-ripple
       :active="link === 'inbox'"
-      @click="link = 'inbox'"
+      @click="changeActiveScreenName('inbox')"
       active-class="my-menu-link"
     >
       <q-item-section avatar>
@@ -26,7 +26,7 @@
       clickable
       v-ripple
       :active="link === 'important'"
-      @click="link = 'important'"
+      @click="changeActiveScreenName('important')"
       active-class="my-menu-link"
     >
       <q-item-section avatar>
@@ -42,7 +42,7 @@
       clickable
       v-ripple
       :active="link === 'outbox'"
-      @click="link = 'outbox'"
+      @click="changeActiveScreenName('outbox')"
       active-class="my-menu-link"
     >
       <q-item-section avatar>
@@ -58,7 +58,7 @@
       clickable
       v-ripple
       :active="link === 'trash'"
-      @click="link = 'trash'"
+      @click="changeActiveScreenName('trash')"
       active-class="my-menu-link"
     >
       <q-item-section avatar>
@@ -93,7 +93,18 @@ export default {
   name: 'Menu',
   data () {
     return {
-      link: 'inbox'
+      link: this.$store.state.menu.activeScreen
+    }
+  },
+  // computed: {
+  //   activeScreen () {
+  //     return this.$store.state.menu.activeScreen
+  //   }
+  // },
+  methods: {
+    changeActiveScreenName (screenName) {
+      this.link = screenName
+      this.$store.commit(`menu/changeActiveScreenName`, screenName)
     }
   }
 }
