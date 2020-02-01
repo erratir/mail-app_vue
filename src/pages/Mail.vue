@@ -36,6 +36,9 @@ export default {
     return {
       splitterModel: 35 // start at 50%
     }
+  },
+  created () {
+    this.$store.dispatch('mail/getAllMessages')
   }
 }
 </script>

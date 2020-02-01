@@ -1,7 +1,10 @@
+/**
+ * Mocking client-server processing
+ */
 import user from './settings.js'
 import { date } from 'quasar'
 
-export default [
+const _messages = [
   {
     from: {
       name: 'Google',
@@ -42,3 +45,9 @@ export default [
     isRead: false
   }
 ]
+
+export default {
+  getMessages (cb) {
+    setTimeout(() => cb(_messages), 100)
+  }
+}
