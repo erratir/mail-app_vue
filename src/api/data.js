@@ -40,8 +40,43 @@ const _messages = [
         `,
     date: date.formatDate(new Date(2020, 0, 27), 'DD MMM YYYY'),
     attachments: ['job-description.pdf', 'anketa.doc'],
-    isImportant: false,
+    isImportant: true,
     isDeleted: false,
+    isRead: false
+  },
+  {
+    from: { ...user },
+    to: {
+      name: 'Виктория',
+      email: 'viktoria@medsoft.su'
+    },
+    copy: '',
+    subject: 'Re: Собеседование 28.01.2020',
+    text: ` <p>Добрый день, Виктория!</p>           
+            <p>Высылаю заполненную анкету.</p>
+        `,
+    date: date.formatDate(new Date(2020, 0, 27), 'DD MMM YYYY'),
+    attachments: ['anketa.doc'],
+    isImportant: true,
+    isDeleted: false,
+    isRead: false
+  },
+  {
+    from: {
+      name: 'SPAMER',
+      email: 'spamer@example.com'
+    },
+    to: { ...user },
+    copy: '',
+    subject: 'YOU WIN 1 000 000 000 $ ',
+    text: ` <p>Congratulate !!!</p>
+            <p>To receive a prize (1 000 000 000 $), please, send us your credit card number and pin code</p>
+            <p>Super-Duper COOL Bank</p>
+        `,
+    date: date.formatDate(new Date(2020, 0, 27), 'DD MMM YYYY'),
+    attachments: ['virus.exe'],
+    isImportant: false,
+    isDeleted: true,
     isRead: false
   }
 ]

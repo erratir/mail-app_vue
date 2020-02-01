@@ -18,7 +18,7 @@ const actions = {
   // get data from server and set state
   getAllMessages ({ commit }) {
     api.getMessages((messages) => {
-      let inbox = messages.filter((message) => message.to.email === user.email)
+      let inbox = messages.filter((message) => message.to.email === user.email && !message.isDeleted)
       let outbox = messages.filter((message) => message.from.email === user.email)
       let important = messages.filter((message) => message.isImportant)
       let trash = messages.filter((message) => message.isDeleted)
