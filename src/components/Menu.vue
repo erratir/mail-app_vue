@@ -17,7 +17,7 @@
       </q-item-section>
 
       <q-item-section side top>
-        <q-badge label="10k" />
+        <q-badge :label="inboxCount" />
       </q-item-section>
 
     </q-item>
@@ -36,6 +36,11 @@
       <q-item-section>
         Important
       </q-item-section>
+
+      <q-item-section side top>
+        <q-badge :label="importantCount" />
+      </q-item-section>
+
     </q-item>
 
     <q-item
@@ -52,6 +57,11 @@
       <q-item-section>
         Outbox
       </q-item-section>
+
+      <q-item-section side top>
+        <q-badge :label="outboxCount" />
+      </q-item-section>
+
     </q-item>
 
     <q-item
@@ -68,6 +78,11 @@
       <q-item-section>
         Trash
       </q-item-section>
+
+      <q-item-section side top>
+        <q-badge :label="trashCount" />
+      </q-item-section>
+
     </q-item>
 
     <q-item class="q-mt-xl"
@@ -89,6 +104,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'Menu',
   data () {
@@ -96,11 +113,13 @@ export default {
       link: this.$store.state.menu.activeScreen
     }
   },
-  // computed: {
-  //   activeScreen () {
-  //     return this.$store.state.menu.activeScreen
-  //   }
-  // },
+  computed: mapState({
+    inboxCount: state => state.mail.inbox.length,
+    outboxCount: state => state.mail.outbox.length,
+    importantCount: state => state.mail.important.length,
+    trashCount: state => state.mail.trash.length
+
+  }),
   methods: {
     changeActiveScreenName (screenName) {
       this.link = screenName
