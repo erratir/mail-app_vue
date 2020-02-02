@@ -5,12 +5,19 @@ import user from '../../api/settings'
 const state = {
   inbox: [],
   outbox: [],
-  important: [],
+  // important: [],
   trash: []
 }
 
 // getters
-const getters = {}
+const getters = {
+  getImportantMessages () {
+    const filterImportant = (messages) => {
+      return messages.filter(element => element.isImportant)
+    }
+    return [...filterImportant(state.inbox), ...filterImportant(state.outbox)]
+  }
+}
 
 // actions
 const actions = {
@@ -19,12 +26,12 @@ const actions = {
     api.getMessages((messages) => {
       let inbox = messages.filter((message) => message.to.email === user.email && !message.isDeleted)
       let outbox = messages.filter((message) => message.from.email === user.email)
-      let important = messages.filter((message) => message.isImportant)
+      // let important = messages.filter((message) => message.isImportant)
       let trash = messages.filter((message) => message.isDeleted)
 
       commit('setInbox', inbox)
       commit('setOutbox', outbox)
-      commit('setImportant', important)
+      // commit('setImportant', important)
       commit('setTrash', trash)
     })
   }

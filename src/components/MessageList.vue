@@ -23,7 +23,7 @@
 
         <q-item-section top side>
           <div class="text-grey-8 q-gutter-xs">
-            <q-btn v-if="activeFolderName !== 'trash'" class="gt-xs" size="12px" flat dense round icon="delete" @click="deleteMessage(message.id)" />
+            <q-btn v-if="activeFolderName !== 'trash' && activeFolderName !== 'important'" class="gt-xs" size="12px" flat dense round icon="delete" @click="deleteMessage(message.id)" />
             <q-btn size="12px" flat dense round icon="more_vert" />
           </div>
         </q-item-section>
@@ -44,10 +44,11 @@ export default {
   },
   computed: mapState({
     ...mapGetters({
-      activeFolderName: 'menu/getActiveScreen'
+      activeFolderName: 'menu/getActiveScreen',
+      importantMessages: 'mail/getImportantMessages'
     }),
     messages (state) {
-      return state.mail[this.activeFolderName]
+      return this.activeFolderName === `important` ? this.importantMessages : state.mail[this.activeFolderName]
     }
   }),
   methods: {

@@ -104,7 +104,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
   name: 'Menu',
@@ -114,9 +114,14 @@ export default {
     }
   },
   computed: mapState({
+    ...mapGetters({
+      importantMessages: 'mail/getImportantMessages'
+    }),
     inboxCount: state => state.mail.inbox.length,
     outboxCount: state => state.mail.outbox.length,
-    importantCount: state => state.mail.important.length,
+    importantCount () {
+      return this.importantMessages.length
+    },
     trashCount: state => state.mail.trash.length
 
   }),
