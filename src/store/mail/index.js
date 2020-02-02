@@ -1,12 +1,13 @@
 import api from '../../api/data'
-import user from '../../api/settings'
+import user, { messageTemplate } from '../../api/settings'
 
 // initial state
 const state = {
   inbox: [],
   outbox: [],
   // important: [],
-  trash: []
+  trash: [],
+  activeMessage: messageTemplate
 }
 
 // getters
@@ -16,6 +17,9 @@ const getters = {
       return messages.filter(element => element.isImportant)
     }
     return [...filterImportant(state.inbox), ...filterImportant(state.outbox)]
+  },
+  getActiveMessage () {
+    return state.activeMessage
   }
 }
 
@@ -73,6 +77,9 @@ const mutations = {
    */
   changeImportance (state, payload) {
     payload.message.isImportant = !payload.message.isImportant
+  },
+  setActiveMessage (state, message) {
+    state.activeMessage = message
   }
 }
 

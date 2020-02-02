@@ -122,14 +122,20 @@ export default {
     importantCount () {
       return this.importantMessages.length
     },
-    trashCount: state => state.mail.trash.length
-
+    trashCount: state => state.mail.trash.length,
+    activeMessage (state) {
+      return this.link === `important` ? this.importantMessages[0] : state.mail[this.link][0]
+    }
   }),
   methods: {
     changeActiveScreenName (screenName) {
       this.link = screenName
       this.$store.commit(`menu/changeActiveScreenName`, screenName)
+      this.$store.commit(`mail/setActiveMessage`, this.activeMessage)
     }
+  },
+  created () {
+    this.$store.commit(`mail/setActiveMessage`, this.activeMessage)
   }
 }
 </script>
