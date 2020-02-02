@@ -35,8 +35,8 @@
           <q-avatar size="56px" class="q-mb-sm">
             <img src="https://cdn.quasar.dev/img/boy-avatar.png">
           </q-avatar>
-          <div class="text-weight-bold">Aleksei Kobzev</div>
-          <div>kavpost@gmail.com</div>
+          <div class="text-weight-bold">{{ currentUser.name }}</div>
+          <div>{{ currentUser.email }}</div>
         </div>
       </q-img>
     </q-drawer>
@@ -49,6 +49,7 @@
 
 <script>
 import Menu from '../components/Menu'
+import user from '../api/settings'
 
 export default {
   name: 'MyLayout',
@@ -56,6 +57,11 @@ export default {
   data () {
     return {
       leftDrawerOpen: false
+    }
+  },
+  computed: {
+    currentUser () {
+      return user
     }
   }
 }
