@@ -4,7 +4,10 @@
       <q-item v-for="message in messages" :key="message.id" clickable v-ripple>
         <q-item-section side left>
           <div class="text-grey-8 q-gutter-xs">
-            <q-btn class="gt-xs" size="12px" flat dense round icon="star" />
+            <div v-if="activeFolderName !== 'trash'" @click="changeImportance(message)">
+              <q-btn v-if="message.isImportant" class="gt-xs text-warning" size="12px" flat dense round icon="star" />
+              <q-btn v-else class="gt-xs" size="12px" flat dense round icon="star" />
+            </div>
           </div>
         </q-item-section>
         <q-item-section avatar>
@@ -52,14 +55,20 @@ export default {
     }
   }),
   methods: {
-    delHtmlTags: function (str) {
+    delHtmlTags (str) {
       return str.replace(/<\/?[^>]+(>|$)/g, '')
     },
-    deleteMessage: function (messageId) {
+    deleteMessage (messageId) {
       this.$store.commit({
         type: 'mail/deleteMessage',
         activeFolderName: this.activeFolderName,
         messageId
+      })
+    },
+    changeImportance (message) {
+      this.$store.commit({
+        type: 'mail/changeImportance',
+        message
       })
     }
   },

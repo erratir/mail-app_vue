@@ -65,6 +65,14 @@ const mutations = {
     deletedMessage.isDeleted = true
     state.trash.push(deletedMessage)
     state[payload.activeFolderName].splice(messageIndex, 1)
+  },
+  /**
+   * Change property {}.isImportant in message
+   * @param state
+   * @param payload
+   */
+  changeImportance (state, payload) {
+    payload.message.isImportant = !payload.message.isImportant
   }
 }
 
