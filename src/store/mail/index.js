@@ -2,7 +2,6 @@ import api from '../../api/data'
 import user from '../../api/settings'
 
 // initial state
-// todo: Сохранять initial state в локал сторадж ???
 const state = {
   inbox: [],
   outbox: [],
@@ -44,6 +43,21 @@ const mutations = {
   },
   setTrash (state, deletedMessages) {
     state.trash = deletedMessages
+  },
+  /**
+   * Delete message from folder to trash-folder
+   * use splice() and push()  https://vuejs.org/v2/guide/list.html#Array-Change-Detection
+   * @param state
+   * @param {{activeFolderName: string, messageId: number}} payload
+   */
+  deleteMessage (state, payload) {
+    const copyFolder = [ ...state[payload.activeFolderName] ]
+    const messageIndex = copyFolder.findIndex((element) => element.id === payload.messageId)
+    const deletedMessage = copyFolder[messageIndex]
+
+    deletedMessage.isDeleted = true
+    state.trash.push(deletedMessage)
+    state[payload.activeFolderName].splice(messageIndex, 1)
   }
 }
 

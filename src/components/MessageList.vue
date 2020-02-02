@@ -23,7 +23,7 @@
 
         <q-item-section top side>
           <div class="text-grey-8 q-gutter-xs">
-            <q-btn class="gt-xs" size="12px" flat dense round icon="delete" />
+            <q-btn v-if="activeFolderName !== 'trash'" class="gt-xs" size="12px" flat dense round icon="delete" @click="deleteMessage(message.id)" />
             <q-btn size="12px" flat dense round icon="more_vert" />
           </div>
         </q-item-section>
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
   name: 'MessageList',
@@ -43,11 +43,23 @@ export default {
     }
   },
   computed: mapState({
-    messages: state => state.mail[state.menu.activeScreen]
+    ...mapGetters({
+      activeFolderName: 'menu/getActiveScreen'
+    }),
+    messages (state) {
+      return state.mail[this.activeFolderName]
+    }
   }),
   methods: {
     delHtmlTags: function (str) {
       return str.replace(/<\/?[^>]+(>|$)/g, '')
+    },
+    deleteMessage: function (messageId) {
+      this.$store.commit({
+        type: 'mail/deleteMessage',
+        activeFolderName: this.activeFolderName,
+        messageId
+      })
     }
   },
   created () {

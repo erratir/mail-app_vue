@@ -4,7 +4,11 @@ const state = {
 }
 
 // getters
-const getters = {}
+const getters = {
+  getActiveScreen: state => {
+    return state.activeScreen
+  }
+}
 
 // actions
 const actions = {

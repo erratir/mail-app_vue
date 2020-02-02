@@ -30,7 +30,7 @@
 import MessageList from '../components/MessageList'
 import MessageView from '../components/MessageView'
 export default {
-  name: 'Content',
+  name: 'mail',
   components: { MessageView, MessageList },
   data () {
     return {

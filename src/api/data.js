@@ -6,6 +6,7 @@ import { date } from 'quasar'
 
 const _messages = [
   {
+    id: 1,
     from: {
       name: 'Google',
       email: 'security@accounts.google.com'
@@ -27,6 +28,7 @@ const _messages = [
     isRead: false
   },
   {
+    id: 2,
     from: {
       name: 'Виктория',
       email: 'viktoria@medsoft.su'
@@ -45,6 +47,7 @@ const _messages = [
     isRead: false
   },
   {
+    id: 3,
     from: { ...user },
     to: {
       name: 'Виктория',
@@ -62,6 +65,7 @@ const _messages = [
     isRead: false
   },
   {
+    id: 4,
     from: {
       name: 'SPAMER',
       email: 'spamer@example.com'
