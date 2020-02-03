@@ -1,5 +1,7 @@
 <template>
   <q-list separator padding>
+    <NewMessage></NewMessage>
+
     <q-item
       to="/"
       clickable
@@ -105,9 +107,11 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex'
+import NewMessage from './NewMessage'
 
 export default {
   name: 'Menu',
+  components: { NewMessage },
   data () {
     return {
       link: this.$store.state.menu.activeScreen

@@ -20,6 +20,9 @@ const getters = {
   },
   getActiveMessage () {
     return state.activeMessage
+  },
+  getMessageCount () {
+    return state.inbox.length + state.outbox.length + state.trash.length
   }
 }
 
@@ -80,6 +83,9 @@ const mutations = {
   },
   setActiveMessage (state, message) {
     state.activeMessage = message
+  },
+  sendMessage (state, message) {
+    state.outbox.push(message)
   }
 }
 
